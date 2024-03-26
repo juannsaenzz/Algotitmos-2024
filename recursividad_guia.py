@@ -3,31 +3,40 @@
 #! Dada una secuencia de caracteres, obtener dicha secuencia invertida.
 
 #! Hola → aloH
-#! ola → H
-#! la → oH
-#! a → loH
-#! _ → aloH
 
-def invertir(cadena):
+def invertirCadena(cadena):
     if len(cadena) <= 1:
         return cadena
     else:
-        return cadena[-1] + invertir(cadena[:-1])
-    #! cadena[-1] es el ultimo elemento de la cadena y cadena[:-1] toma todos los valores de la cadena, menos el ultimo
+        return cadena[-1] + invertirCadena(cadena[:-1])
+    #! cadena[-1] es el ultimo caracter de la cadena y cadena[:-1] (SLICING para recortar variables o listas) toma todos los caracteres de la cadena, menos el ultimo.
     
-print (invertir('hola'))
+print(invertirCadena('hola mundo'))
 
 #! EJERCICIO 7
 #! Desarrollar un algoritmo que permita calcular la siguiente serie:
 #! h(n) = 1+ 1/2 + 1/3 + ... + 1/n
 
-def serie(n):
+#! 1/n + (1/n-1...1)
+
+def sumatoriaSerie(n):
     if n == 1:
         return n
     else:
-        return 1/n + serie(n-1)
+        return 1/n + sumatoriaSerie(n-1)
     
-print (serie(2))
+print(sumatoriaSerie(5))
+
+#! EJERCICIO 8
+#! Desarrollar un algoritmo que permita convertir un número entero en sistema decimal a sistema binario.
+
+def convertirBinario(numero):
+    if numero <= 1:
+        return str(numero)
+    else:
+        return convertirBinario(numero//2) + str(numero%2)
+
+print(convertirBinario(3))
 
 #! EJERCICIO 10
 #! Desarrollar un algoritmo que cuente la cantidad de dígitos de un número entero.
@@ -41,4 +50,49 @@ def contarDigitos(numero):
         return 1 + contarDigitos(numero//10)
     #! cada vez que se puede dividir por 10, se le suma un digito
     
-print (contarDigitos(10))
+print(contarDigitos(100))
+
+#! EJERCICIO 11
+#! Desarrollar un algoritmo que invierta un número entero sin convertirlo a cadena.
+
+#! 1234 → 4321
+#! 1234
+#!  4000
+#!   300
+#!    20
+#!     1
+
+def invertirNumero(numero):
+    if numero < 10:
+        return numero
+    else:
+        return (numero%10) * 10 ** len(str(numero//10))  + invertirNumero(numero//10)
+    
+print(invertirNumero(1234))
+
+#! EJERCICIO 14
+#! Desarrollar un algoritmo que permita realizar la suma de los dígitos de un número entero, no se puede convertir el número a cadena.
+
+#! 123 = 6
+
+def sumarDigitos(numero):
+    if numero < 10:
+        return numero
+    else:
+        return (numero%10) + sumarDigitos(numero//10)
+
+print(sumarDigitos(123))
+
+#! EJERCICIO 17
+#! Escribir una función recursiva que permita mostrar los valores de un vector de atrás hacia adelante.
+
+nombres = ['juan', 'maria', 'nico', 'sol']
+
+def barrido(lista):
+    if len(lista) == 1:
+        print(lista[0])
+    else:
+        barrido(lista[1:])
+        print(lista[0])
+
+barrido(nombres)
