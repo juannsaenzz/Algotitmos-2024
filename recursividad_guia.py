@@ -38,6 +38,18 @@ def convertirBinario(numero):
 
 print(convertirBinario(3))
 
+#! EJERCICIO 9
+#! Implementar una función para calcular el logaritmo entero de número n en una base b. Recuerde que:
+#! log en base b (n/b) = log en base b (n) + log en base b (b)
+
+def logaritmo(n, b):
+    if n < b:
+        return 0
+    else:
+        return 1 + logaritmo(n//b, b)
+    
+print(logaritmo(64, 2))
+
 #! EJERCICIO 10
 #! Desarrollar un algoritmo que cuente la cantidad de dígitos de un número entero.
 
@@ -70,6 +82,22 @@ def invertirNumero(numero):
     
 print(invertirNumero(1234))
 
+#! EJERCICIO 12
+#! Desarrollar el algoritmo de Euclides para calcular el máximo común divisor (MCD) de dos números enteros.
+
+#! 12 - 6  / 2
+#!  6    3  / 3
+#!  3    1
+#! 2*3 = 6 (MCD)
+
+def mcd(num1, num2):
+    if num2 <= 1:
+        return num1
+    else:
+        return mcd(num2, num1%num2)
+    
+print(mcd(12, 6))
+    
 #! EJERCICIO 14
 #! Desarrollar un algoritmo que permita realizar la suma de los dígitos de un número entero, no se puede convertir el número a cadena.
 
