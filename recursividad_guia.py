@@ -1,4 +1,18 @@
 
+#! EJERCICIO 1
+#! Implementar una función que permita obtener el valor en la sucesión de Fibonacci para un número dado.
+
+def fibonacci(n):
+    if n <= 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = 3
+print(fibonacci(n))
+
 #! EJERCICIO 6
 #! Dada una secuencia de caracteres, obtener dicha secuencia invertida.
 
@@ -111,6 +125,50 @@ def sumarDigitos(numero):
 
 print(sumarDigitos(123))
 
+#! EJERCICIO 15
+#! Desarrollar una función que permita calcular la raíz cuadrada entera de un número entero.
+#! Puede utilizar una función auxiliar para que la función principal solo reciba como parámetro el número a calcular su raíz.
+
+#!  Utilizando el método de aproximación de Newton para calcular la raíz cuadrada
+def raizCuadradaRecursiva(n, aprox = None):
+    if aprox is None:
+        aprox = n // 2
+    sigAprox = (aprox + n // aprox) // 2 #! metodo de Newton
+    if sigAprox >= aprox:
+        return aprox
+    return raizCuadradaRecursiva(n, sigAprox)
+
+def raizCuadrada(numero):
+    if numero < 0:
+        print("No se puede calcular la raíz cuadrada de un número negativo")
+    elif numero == 0:
+        return 0
+    else:
+        return raizCuadradaRecursiva(numero)
+    
+numero = 16
+print(raizCuadrada(numero))
+
+#! EJERCICIO 16
+#!Implementar un función recursiva que permita obtener el valor de an en una sucesión geométrica (o progresión geométrica) con un valor a1= 2 y una razón r = -3.
+#! Además desarrollar un algoritmo que permita visualizar todos los valores de dicha sucesión desde a1 hasta an.
+
+#! forma general de sucesion geometrica: an = a . r**(n-1)
+#! 2 . (-3)**(n-1) 
+
+def sucesionGeometrica(a1, r, n):
+    if n == 1:
+        return a1
+    else:
+        return r * (sucesionGeometrica(a1, r, n-1))
+
+a1 = 2
+r = -3
+n = 10
+
+for i in range(1, n + 1):
+    print(f'a{i}: {sucesionGeometrica(a1, r, i)}')
+
 #! EJERCICIO 17
 #! Escribir una función recursiva que permita mostrar los valores de un vector de atrás hacia adelante.
 
@@ -124,3 +182,53 @@ def barrido(lista):
         print(lista[0])
 
 barrido(nombres)
+
+#! EJERCICIO 18
+#! Implementar una función recursiva que permita recorrer una matriz y mostrar sus valores.
+
+def matrizRec(matriz, fila = 0, columna = 0):
+    if fila == len(matriz): #! Verificar si se termino de recorrer la matriz
+        return
+    print(matriz[fila][columna]) #! Mostrar el valor actual de la matriz
+    if columna + 1 < len(matriz[0]): #! Avanzar a la siguiente columna
+        matrizRec(matriz, fila, columna + 1)
+    else: #! Si se termino de recorrer la columna acutual, avanzar a la siguiente fila
+        matrizRec(matriz, fila + 1, 0)
+        
+matriz = [[1,2,3], [4,5,6], [7,8,9]]
+matrizRec(matriz)
+
+#! EJERCICIO 19
+#! Dada la siguiente definición de sucesión recursiva, realizar una función recursiva que permita
+#! calcular el valor de un determinado número en dicha sucesión.
+
+#! f(n) = 2 -> n = 1
+#!      =  n + (1 / f(n-1)) -> n >= 2
+
+def sucesion(n):
+    if n == 1:
+        return 2
+    else:
+        return n + (1 / sucesion(n-1))
+    
+n = 2
+print(sucesion(n))
+
+#! EJERCICIO 20
+#! Desarrollar un algoritmo que permita implementar la búsqueda secuencial con centinela de manera recursiva,
+#! y permita determinar si un valor dado está o no en dicha lista.
+
+def busquedaSecuencial(lista, valor, indice = 0):
+    if indice == len(lista): #! Verificar si se termino de recorrer la lista
+        return False
+    if lista[indice] == valor: #! Verificar si se encuentra el valor
+        return True
+    return busquedaSecuencial(lista, valor, indice + 1) #! Incrementar el indice en 1 para cada recorrido
+
+lista = [1,2,3,4,5,6,7]
+valor = 4
+
+if busquedaSecuencial(lista, valor):
+    print(f'{valor} si esta en la lista')
+else:
+    print(f'{valor} no esta en la lista')
