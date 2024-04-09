@@ -2,16 +2,16 @@
 #! EJERCICIO 1
 #! Implementar una función que permita obtener el valor en la sucesión de Fibonacci para un número dado.
 
+#! f(n) = 
+
 def fibonacci(n):
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
+    if n == 0 or n == 1:
+        return n
     else:
         return fibonacci(n - 1) + fibonacci(n - 2)
 
 n = 3
-print(fibonacci(n))
+print(f'fibonacci de {n} = {fibonacci(n)}')
 
 #! EJERCICIO 6
 #! Dada una secuencia de caracteres, obtener dicha secuencia invertida.
@@ -232,3 +232,26 @@ if busquedaSecuencial(lista, valor):
     print(f'{valor} si esta en la lista')
 else:
     print(f'{valor} no esta en la lista')
+    
+#! EJERCICIO 21
+#! Dada una lista de valores ordenadas, desarrollar un algoritmo que modifique el método de búsqueda binaria para que
+#! funcione de forma recursiva, y permita determinar si un valor dado está o no en dicha lista.
+
+numeros = [1,2,4,5,6,7]
+
+def busqBinariaRec(lista, buscado, primero, ultimo):
+    medio = (primero + ultimo) // 2
+    if primero > ultimo:
+        return None
+    elif buscado == lista[medio]:
+        return medio
+    else:
+        if buscado < lista[medio]:
+            busqBinariaRec(lista, buscado, primero, medio-1)
+        else:
+             busqBinariaRec(lista, buscado, medio+1, ultimo)
+
+pos = busqBinariaRec(numeros, 4, 0, len(numeros)-1)
+print(f'posicion: {pos}')
+if pos is not None:
+    print(f'numero: {numeros[pos]}')
