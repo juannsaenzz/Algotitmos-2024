@@ -1,4 +1,5 @@
 
+#! EJERCICIO 2
 #! Eliminar de una pila todos los elementos impares, es decir que en la misma solo queden números pares.
 
 from pila import Stack
@@ -17,7 +18,7 @@ while pila.size() > 0:
         pilaAux.push(data)
         
 while pilaAux.size() > 0:
-    pila.push(pilaAux.pop())
-    
-print()
-print(pila.size())
+    pila.push(pilaAux.pop())   
+
+print()  
+print(f'Cantidad de elementos pares: {pila.size()}')
