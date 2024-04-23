@@ -4,9 +4,8 @@
 #! intersección de ambas pilas, es decir los personajes que aparecen en ambos episodios.
 
 from pila import Stack
-from random import randint
 
-#! Crea una pila para cada episodio
+#! Crea una pila para cada episodio y una pila para la interseccion de ambas pilas
 episodio_V = Stack()
 episodio_VII = Stack()
 interseccion = Stack()
@@ -39,3 +38,32 @@ episodio_VII.push('General Armitage Hux')
 episodio_VII.push('C3PO')
 episodio_VII.push('Snoke')
 episodio_VII.push('Luke Skywalker')
+
+#! Crea una lista para almacenar los personajes de la pila episodio V
+data_V = []
+
+print('Episodio V:')
+
+#! Agrega los personajes de la pila episodio V a la lista creada
+while episodio_V.size() > 0:
+    data = episodio_V.pop()
+    print(data)
+    data_V.append(data)
+
+print()
+print('Episodio VII:')
+
+#! Compara cada personaje de la pila episodio VII con los personajes almacenados en la lista del episodio V
+while episodio_VII.size() > 0:
+    data_VII = episodio_VII.pop()
+    print(data_VII)
+    #! Si el personaje de la pila episodio VII se encuentra en la lista del episodio V, se agrega a la pila 'interseccion
+    if data_VII in data_V:
+        interseccion.push(data_VII)
+
+print()        
+
+#! Muestra la intersección de los personajes
+print('Personajes que aparecen en ambos episodios:')
+while interseccion.size() > 0:
+    print(interseccion.pop())
