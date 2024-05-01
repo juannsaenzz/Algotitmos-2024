@@ -5,6 +5,12 @@
 
 from random import randint
 
+def es_par(numero):
+    return numero % 2 == 0
+
+def es_impar(numero):
+    return numero % 2 != 0
+
 lista = []
 for i in range(10):
     lista.append(randint(1,99))
@@ -17,9 +23,9 @@ lista_pares = []
 lista_impares = []
 
 for elemento in lista:
-    if elemento % 2 == 0:
+    if es_par(elemento):
         lista_pares.append(elemento)
-    else:
+    elif es_impar(elemento):
         lista_impares.append(elemento)
 
 print()
