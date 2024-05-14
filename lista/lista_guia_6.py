@@ -16,7 +16,7 @@
 #! h. listar los superhéroes que comienzan con la letra B, M y S;
 #! i. determinar cuántos superhéroes hay de cada casa de comic.
 
-from lista import search, remove, show_list
+from lista import search, remove, by_name
 
 def show_heroes(super_heroes):
     for heroe in super_heroes:
@@ -25,6 +25,12 @@ def show_heroes(super_heroes):
         print(f"Casa de comics: {heroe['casa_comic']}")
         print(f"Biografia: {heroe['biografia']}")
         print()
+
+def show_info(heroe):
+  print(f"Nombre: {heroe['nombre']}")
+  print(f"Año de aparicion: {heroe['año_aparicion']}")
+  print(f"Casa de comics: {heroe['casa_comic']}")
+  print(f"Biografia: {heroe['biografia']}")
     
 super_heroes = [
   {
@@ -186,16 +192,16 @@ if index_dr_strange is not None:
 #! D
 print()
 print('Superheroes que en su biografia tienen la palabra traje o armadura:')
-for heroe in super_heroes:
+for index, heroe in enumerate(super_heroes):
     if "traje" in heroe["biografia"] or "armadura" in heroe["biografia"]:
-        print(heroe['nombre'])
+        print(index, heroe['nombre'])
 
 #! E
 print()
 print('Superheroes cuya fecha de aparicion es anterior a 1963:')
-for heroe in super_heroes:
+for index, heroe in enumerate(super_heroes):
     if heroe['año_aparicion'] < 1963:
-        print(f"Nombre: {heroe['nombre']}, Casa Comic: {heroe['casa_comic']}")
+        print(f"{index} Nombre: {heroe['nombre']}, Casa Comic: {heroe['casa_comic']}")
 
 #! F
 print()
@@ -217,14 +223,14 @@ else:
 print()
 index_flash = search(super_heroes, 'nombre', 'Flash')
 if index_flash is not None:
-    print(super_heroes[index_flash])
+    print(show_info(super_heroes[index_flash]))
 else:
     print('Flash no se encuentra en la lista')
 
 print()
 index_starlord = search(super_heroes, 'nombre', 'Star-Lord')
 if index_starlord is not None:
-    print(super_heroes[index_starlord])
+    print(show_info(super_heroes[index_starlord]))
 else:
     print('Star-Lord no se encuentra en la lista')
 
@@ -237,6 +243,7 @@ for heroe in super_heroes:
     if heroe['nombre'][0] in iniciales:
         lista_bms.append(heroe)
 
+lista_bms.sort(key=by_name)
 print('Listado de superheroes que comienzan con las letra B, M o S:')
 show_heroes(lista_bms)
 
