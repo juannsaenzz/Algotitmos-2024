@@ -16,6 +16,16 @@
 #! h. listar los superhéroes que comienzan con la letra B, M y S;
 #! i. determinar cuántos superhéroes hay de cada casa de comic.
 
+from lista import search, remove, show_list
+
+def show_heroes(super_heroes):
+    for heroe in super_heroes:
+        print(f"Nombre: {heroe['nombre']}")
+        print(f"Año de aparicion: {heroe['año_aparicion']}")
+        print(f"Casa de comics: {heroe['casa_comic']}")
+        print(f"Biografia: {heroe['biografia']}")
+        print()
+    
 super_heroes = [
   {
     "nombre": "Linterna Verde",
@@ -156,31 +166,6 @@ super_heroes = [
     "biografia": "Hank Pym o Scott Lang, héroes capaces de cambiar de tamaño y comunicarse con insectos."
   }
 ]
-
-def search(list_values, criterio, value):
-    for index, personaje in enumerate(list_values):
-        if personaje[criterio] == value:
-            return index
-
-def remove(list_values, criterio, value):
-    index = search(list_values, criterio, value)
-    if index is not None:
-        return list_values.pop(index)
-
-def show_list(title, list_values):
-    print()
-    print(f"{title}")
-    for index, elemento in enumerate(list_values):
-        print(index, elemento)
-    print()
-
-def show_heroes(super_heroes):
-    for heroe in super_heroes:
-        print(f"Nombre: {heroe['nombre']}")
-        print(f"Año de aparicion: {heroe['año_aparicion']}")
-        print(f"Casa de comics: {heroe['casa_comic']}")
-        print(f"Biografia: {heroe['biografia']}")
-        print()
 
 #! A
 remove(super_heroes, 'nombre', 'Linterna Verde')
