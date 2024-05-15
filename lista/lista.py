@@ -65,6 +65,9 @@ def by_name(item):
 def by_hegiht(item):
     return item['altura']
 
+def by_surname(item):
+    return item['apellido']
+
 #! ordenar elementos simples
 # personajes_star_wars.sort(key=by_name)
 
