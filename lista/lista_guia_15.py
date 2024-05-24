@@ -94,6 +94,57 @@ def promedio_nivel(entrenador, lista_entrenadores):
             return nivel_total / len(pokemones_entrenador)
     return None
 
+def cant_entrenadores_pokemon(nombre_pokemon, lista_entrenadores):
+    cont = 0
+    for entrenador in lista_entrenadores:
+        for pokemon in entrenador['sublist']:
+            if pokemon['nombre'] == nombre_pokemon:
+                cont += 1
+                break
+    return cont
+
+def entrenadores_pokemons_repetidos(lista_entrenadores):
+    entrenadores_repetidos = []
+    for entrenador in lista_entrenadores:
+        pokemones_entrenador = []
+        for pokemon in entrenador['sublist']:
+            if pokemon['nombre'] in pokemones_entrenador:
+                entrenadores_repetidos.append({
+                    'nombre': entrenador['nombre'],
+                    'pokemones_repetidos': pokemon['nombre']
+                })
+                break
+            else:
+                pokemones_entrenador.append(pokemon['nombre'])
+    return entrenadores_repetidos
+
+def entrenadores_pokemones_especificos(pokemones_buscados, lista_entrenadores):
+    entrenadores_coincidentes = []
+    for entrenador in lista_entrenadores:
+        for pokemon in entrenador['sublist']:
+            if pokemon['nombre'] in pokemones_buscados and entrenador['nombre'] not in entrenadores_coincidentes:
+                entrenadores_coincidentes.append(entrenador['nombre'])
+                break
+    return entrenadores_coincidentes
+
+def encontrar_entrenador_pokemon(entrenador_buscado, pokemon_buscado, lista_entrenadores):
+    for entrenador in lista_entrenadores:
+        if entrenador['nombre'] == entrenador_buscado:
+            for pokemon in entrenador['sublist']:
+                if pokemon['nombre'] == pokemon_buscado:
+                    print("Datos del Entrenador:")
+                    print(f"Nombre: {entrenador['nombre']}")
+                    print(f"Torneos Ganados: {entrenador['torneos_ganados']}")
+                    print("Datos del Pokémon:")
+                    print(f"Nombre: {pokemon['nombre']}")
+                    print(f"Nivel: {pokemon['nivel']}")
+                    print(f"Tipo: {pokemon['tipo']}")
+                    print(f"Subtipo: {pokemon['subtipo']}")
+                    return
+            print(f"El entrenador '{entrenador_buscado}' no tiene al Pokemon '{pokemon_buscado}' en su equipo")
+            return
+    print(f"No se encontro al entrenador '{entrenador_buscado}' en la lista de entrenadores")
+
 lista_entrenadores = []
 
 entrenadores = [
@@ -151,6 +202,13 @@ pokemones = [
         'entrenador': "Goh"
     },
     {
+        'nombre': "Pikachu",
+        'nivel': 35,
+        'tipo': "Eléctrico",
+        'subtipo': None,
+        'entrenador': "Leon"
+    },
+    {
         'nombre': "Starmie",
         'nivel': 30,
         'tipo': "Agua",
@@ -163,6 +221,13 @@ pokemones = [
         'tipo': "Agua",
         'subtipo': None,
         'entrenador': "Goh"
+    },
+    {
+        'nombre': "Psyduck",
+        'nivel': 25,
+        'tipo': "Agua",
+        'subtipo': None,
+        'entrenador': "Chloe"
     },
     {
         'nombre': "Gyarados",
@@ -197,6 +262,13 @@ pokemones = [
         'nivel': 50,
         'tipo': "Agua",
         'subtipo': None,
+        'entrenador': "Raihan"
+    },
+    {
+        'nombre': "Tyrantrum",
+        'nivel': 60,
+        'tipo': "Agua",
+        'subtipo': "Tierra",
         'entrenador': "Raihan"
     },
     {
@@ -284,3 +356,34 @@ else:
     print(f"No se encontro al entrenador '{entrenador_buscado}' en la lista")
 
 #! H
+print()
+pokemon_buscado = "Psyduck"
+cantidad_entrenadores = cant_entrenadores_pokemon(pokemon_buscado, lista_entrenadores)
+print(f'{pokemon_buscado} esta en el equipo de {cantidad_entrenadores} entrenador/es')
+
+#! I
+print()
+print('Entrenadores con Pokemon repetidos en su equipo:')
+entrenadores_repetidos = entrenadores_pokemons_repetidos(lista_entrenadores)
+if entrenadores_repetidos:
+    for entrenador in entrenadores_repetidos:
+        print(entrenador['nombre'])
+else:
+    print('No hay entrenadores con Pokemon repetidos en su equipo')
+
+#! J
+print()
+print("Entrenador/es que tienen a alguno de los Pokemons 'Tyrantrum', 'Terrakion' o 'Wingull':")
+pokemones_buscados = ["Tyrantrum", "Terrakion", "Wingull"]
+entrenadores_coincidentes = entrenadores_pokemones_especificos(pokemones_buscados, lista_entrenadores)
+if entrenadores_coincidentes:
+    for entrenador in entrenadores_coincidentes:
+        print(entrenador)
+else:
+    print('No hay entrenadores con los Pokemons buscados en su equipo')
+
+#! K
+print()
+entrenador_buscado = input('Ingrese el nombre del entrenador: ')
+pokemon_buscado = input('Ingrese el nombre del Pokemon: ')
+encontrar_entrenador_pokemon(entrenador_buscado, pokemon_buscado, lista_entrenadores)
