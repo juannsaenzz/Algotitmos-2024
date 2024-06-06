@@ -59,6 +59,9 @@
 # print(len(personajes_star_wars))
 
 #! criterios de orden
+def by_surname(item):
+    return item['apellido']
+
 def by_name(item):
     return item['nombre']
 
