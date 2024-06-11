@@ -2,6 +2,10 @@
 #! PUNTO 3
 #! Saenz de Santa Maria, Juan Ignacio
 
+#! ACLARACIÓN: en los puntos a, d, e, f, g, i: muestro toda la infromacion de los jedis ya que me
+#! pareció lo correcto para el caso en que se necesiten datos para realizar alguna actividad en
+#! concreto, aunque con una simple modificación se puede mostrar solamente el nombre.
+
 jedis = [
     {
         "name": "Qui-Gon Jinn",
@@ -694,7 +698,8 @@ print()
 
 #! D
 print("Jedis humanos y twi'lek:")
-print(human_and_twilek_jedis)
+for jedi in human_and_twilek_jedis:
+    print(jedi)
 print()
 
 #! E
@@ -705,12 +710,14 @@ print()
 
 #! F
 print("Jedis con sable de más de un color:")
-print(multiple_colors_jedis)
+for jedi in multiple_colors_jedis:
+    print(jedi)
 print()
 
 #! G
 print("Jedis con sable amarillo o violeta:")
-print(yellow_or_purple_jedis)
+for jedi in yellow_or_purple_jedis:
+    print(jedi)
 print()
 
 #! H
@@ -720,4 +727,5 @@ print()
 
 #! I
 print("Jedis con ranking de Grand Master:")
-print(grand_master_jedis)
+for jedi in grand_master_jedis:
+    print(jedi)
