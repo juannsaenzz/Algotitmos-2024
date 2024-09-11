@@ -147,7 +147,7 @@ class HeapMin():
                 self.sink(index)
 
 
-h = HeapMin()
+#h = HeapMin()
 # h.add(17)
 # h.add(3)
 # h.add(20)
@@ -175,11 +175,11 @@ h = HeapMin()
 # while len(h.elements) > 0:
 #     print(h.atention())
 
-h.elements = [[1, 'pepito'], [1, 'mario'], [1, 'ana'], [2, 'juan'], [2, 'julieta'], [3, 'lola']]
+# h.elements = [[1, 'pepito'], [1, 'mario'], [1, 'ana'], [2, 'juan'], [2, 'julieta'], [3, 'lola']]
 
-h.change_proirity(0, 3)
+# h.change_proirity(0, 3)
 
-print(h.elements)
-a = input()
-while len(h.elements) > 0:
-    print(h.atention())
+# print(h.elements)
+# a = input()
+#while len(h.elements) > 0:
+#    print(h.atention())
