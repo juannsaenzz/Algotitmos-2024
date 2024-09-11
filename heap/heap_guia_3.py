@@ -46,7 +46,7 @@ operaciones_iniciales = [
 for operacion in operaciones_iniciales:
     heap.arrive(operacion, operacion[0])  # La prioridad es el primer elemento de la tupla
 
-# Función para procesar las operaciones usando solo los métodos de la clase HeapMax
+# Función para procesar las operaciones
 def atender_operaciones():
     contador = 0
     while True:
@@ -54,23 +54,35 @@ def atender_operaciones():
             # Después de la quinta operación, agregamos la solicitud de Capitán Phasma
             nueva_operacion = (2, "Capitán Phasma", "Revisión de intrusos en el hangar B7", "20:00", 25)
             heap.arrive(nueva_operacion, nueva_operacion[0])
-            print("\nSe agregó una nueva operación de Capitán Phasma.")
+            print("\nSe agregó una nueva operación de Capitán Phasma: Revisión de intrusos en el hangar B7 con 25 Stormtroopers.")
         
         if contador == 6:
             # Después de la sexta operación, agregamos la solicitud de Snoke
             nueva_operacion = (3, "Líder Supremo Snoke", "Destruir el planeta Takodana", "21:00", None)
             heap.arrive(nueva_operacion, nueva_operacion[0])
-            print("\nSe agregó una nueva operación del Líder Supremo Snoke.")
+            print("\nSe agregó una nueva operación del Líder Supremo Snoke: Destruir el planeta Takodana.")
 
         # Atendemos la siguiente operación en la cola de prioridad usando el método atention
         siguiente_operacion = heap.atention()
         if siguiente_operacion is None:
-            print("No hay más operaciones para atender.")
+            print("\nNo hay más operaciones para atender.")
             break
-        
-        # Desempaquetamos la operación para mostrar los detalles
-        prioridad, encargado, descripcion, hora, stormtroopers = siguiente_operacion
-        print(f"\nAtendiendo operación: Encargado: {encargado}, Descripción: {descripcion}, Hora: {hora}, Stormtroopers: {stormtroopers}")
+
+        # Verifica el contenido de la operación antes de desempaquetar
+        print(f"\nSiguiente operación recibida: {siguiente_operacion}")
+        print(f"Longitud de la operación: {len(siguiente_operacion)}")
+
+        # Desempaquetamos la operación si tiene la longitud correcta
+        if len(siguiente_operacion) == 2:  # La operación contiene la prioridad y detalles
+            prioridad, detalles = siguiente_operacion
+            if len(detalles) == 4:  # Verifica si los detalles tienen los 4 valores esperados
+                encargado, descripcion, hora, stormtroopers = detalles
+                print(f"Atendiendo operación:\n - Encargado: {encargado}\n - Descripción: {descripcion}\n - Hora: {hora}\n - Stormtroopers: {stormtroopers if stormtroopers else 'No requeridos'}")
+            else:
+                print("Error: Los detalles de la operación no tienen el formato esperado.")
+        else:
+            print("Error: La operación no tiene la estructura esperada.")
+
         contador += 1
 
 # Ejecutamos el proceso

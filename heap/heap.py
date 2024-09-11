@@ -147,7 +147,7 @@ class HeapMin():
                 self.sink(index)
 
 
-#h = HeapMin()
+# h = HeapMin()
 # h.add(17)
 # h.add(3)
 # h.add(20)

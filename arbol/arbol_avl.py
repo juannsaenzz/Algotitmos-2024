@@ -236,13 +236,12 @@ tree = BinaryTree()
 # tree.insert_node('R')
 # tree.insert_node('Z')
 # tree.root = tree.balancing(tree.root)
-for i in range(1, 16):
-    tree.insert_node(i)
-    tree.by_level()
-    a = input()
+#for i in range(1, 16):
+#    tree.insert_node(i)
+#    tree.by_level()
+#    a = input()
 
-
-print('diferencia de altura', tree.height(tree.root.right) - tree.height(tree.root.left))
+# print('diferencia de altura', tree.height(tree.root.right) - tree.height(tree.root.left))
 # tree.insert_node(19)
 # tree.insert_node(7)
 # tree.insert_node(31)
